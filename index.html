@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <h1>Control de servomotor sin libreria</h1>
+    <pre>
+<code><span class="c">#define</span> Sevo 3
+<span class="type">long</span> f;
+<span class="type">short</span> c;
+<span class="type">byte</span> g;
+
+<span class="func">void</span> servo()
+{
+    f = c; f *= <span class="number">2000</span>; f /= <span class="number">180</span>; f += <span class="number">450</span>; 
+    <span class="func">for</span> (g = <span class="number">0</span>; g < <span class="number">25</span>; g++)
+    {
+        <span class="arduino">digitalWrite</span></25>(Sevo, <span class="number">HIGH</span>);
+        <span class="arduino">delayMicroseconds</span></25>(f);
+        <span class="arduino">digitalWrite</span></25>(Sevo, <span class="number">LOW</span>);
+        <span class="arduino">delayMicroseconds</span></25>(<span class="number">20000</span> - f);
+    }
+}
+
+<span class="func">void</span> <span class="arduino">setup</span>()
+{
+    <span class="arduino">pinMode</span>(Sevo, <span class="number">OUTPUT</span>);
+}
+
+<span class="func">void</span> <span class="arduino">loop</span>()
+{
+    servo();
+    c++;
+    if (c > <span class="number">180</span>)
+        c = <span class="number">0</span>;
+    <span class="arduino">delay</span>(<span class="number">100</span>);
+} </code>
+    </pre>
+</body>
+
+</html>
